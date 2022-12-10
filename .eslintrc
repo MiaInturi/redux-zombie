@@ -2,12 +2,16 @@
   "env": {
     "browser": true
   },
-  "extends": ["airbnb"],
-  "plugins": ["react"],
+  "extends": ["airbnb", "plugin:react/recommended", "prettier"],
+  "plugins": ["react", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
+    "sourceType": "module",
     "ecmaVersion": "latest"
+  },
+  "rules": {
+    "prettier/prettier": ["error"]
   }
 }
