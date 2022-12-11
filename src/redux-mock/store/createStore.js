@@ -1,14 +1,14 @@
-export const createStore = (reducer, initialStore = {}) => {
-  // Use 'Observable' pattern for changing of 'store'
-  const store = initialStore;
+export const createStore = (reducer, initialState = {}) => {
+  // Use 'Observable' pattern for changing of 'state'
+  const state = initialState;
   const listeners = [];
 
   return {
     getState: () => {
-      return store;
+      return state;
     },
     dispatch: (action) => {
-      reducer(action);
+      reducer(state, action);
       listeners.forEach((listener) => listener());
     },
     subscribe: (listener) => {
