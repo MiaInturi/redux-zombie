@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { StoreContext } from '../Provider/Provider';
 
@@ -14,11 +14,14 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (Component) => {
       return mapDispatchToProps(dispatch, ownProps);
     });
 
+    // Need to update ownProps without recall effect
+    const ownPropsRef = useRef();
+    ownPropsRef.current = ownProps;
+
     useEffect(() => {
       const unsubscribe = store.subscribe(() => {
-        console.log('HERE', store.getState());
-        setMappedStateFromProps(mapStateToProps(store.getState(), ownProps));
-        setMappedFromDispatchProps(mapDispatchToProps(dispatch, ownProps));
+        setMappedStateFromProps(mapStateToProps(store.getState(), ownPropsRef.current));
+        setMappedFromDispatchProps(mapDispatchToProps(dispatch, ownPropsRef.current));
       });
       return unsubscribe;
     }, []);
