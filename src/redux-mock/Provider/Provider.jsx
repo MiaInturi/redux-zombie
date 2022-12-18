@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ReduxContext = React.createContext({});
+export const StoreContext = React.createContext(null);
 
 export const Provider = ({ store, children }) => {
-  return <ReduxContext.Provider value={store}>{children}</ReduxContext.Provider>;
+  return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
 };

@@ -5,7 +5,7 @@ export const reducer = (state, action) => {
     case ACTION_TYPES.DELETE: {
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload.id)
+        todos: state.todos.filter((todo) => todo.id !== action.payload)
       };
     }
     default: {
