@@ -1,6 +1,6 @@
 export const createStore = (reducer, initialState = {}) => {
   // Use 'Observable' pattern for changing of 'state'
-  const state = initialState;
+  let state = initialState;
   const listeners = [];
 
   return {
@@ -8,7 +8,7 @@ export const createStore = (reducer, initialState = {}) => {
       return state;
     },
     dispatch: (action) => {
-      reducer(state, action);
+      state = reducer(state, action);
       listeners.forEach((listener) => listener());
     },
     subscribe: (listener) => {

@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Todo = () => {
-  return <p>Todo</p>;
+export const Todo = ({ description }) => {
+  return <p>{description}</p>;
 };
